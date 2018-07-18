@@ -1,0 +1,19 @@
+/*
+ * viewer.css
+ * Part of Pointless Viewer, a Beamer presentation viewer
+ * Copyright 2018 Pacien TRAN-GIRARD
+ * License: GNU GPL v3
+ */
+
+body {
+  background-color: black;
+  color: white;
+  overflow: hidden;
+}
+
+#screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
