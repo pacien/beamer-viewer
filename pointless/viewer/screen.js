@@ -38,11 +38,28 @@ class Screen {
     this.context.transform(1, 0, 0, 1, xOffset, 0);
   }
 
+  _makeWorkCanvas(width, height) {
+    var canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
+  }
+
+  _transferCanvas(source) {
+    this.context.drawImage(source, 0, 0);
+  }
+
   _paintPage() {
     var renderRatio = this.canvas.height / this.page.getViewport(1).height;
     var renderViewport = this.page.getViewport(renderRatio);
-    var renderContext = { canvasContext: this.context, viewport: renderViewport };
-    this.page.render(renderContext);
+    var workCanvas = this._makeWorkCanvas(renderViewport.width, renderViewport.height);
+    var workContext = workCanvas.getContext("2d");
+    var renderContext = { canvasContext: workContext, viewport: renderViewport };
+
+    var self = this;
+    this.page.render(renderContext).then(function() {
+      self._transferCanvas(workCanvas);
+    });
   }
 
   _refreshPage() {
