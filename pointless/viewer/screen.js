@@ -8,7 +8,7 @@
 "use strict";
 
 class Screen {
-  constructor(window, secondary=false) {
+  constructor(window, secondary=false, withTimer=false) {
     this.window = window;
     this.secondary = secondary;
     this.canvas = window.document.getElementById("screen");
@@ -19,11 +19,18 @@ class Screen {
     this.window.addEventListener("resize", function() {
       self._refreshPage();
     });
+
+    this.timer = withTimer ? new Timer(window) : null;
+    this.pageTurnCount = 0;
   }
 
   setPage(page) {
+    if (this.pageTurnCount === 1 && this.timer != null)
+      this.timer.start();
+
     this.page = page;
     this._refreshPage();
+    this.pageTurnCount++;
   }
 
   _resizeScreen(ratio) {
