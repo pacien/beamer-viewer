@@ -19,6 +19,7 @@ class Stage {
     this.projector.addEventListener("load", function() {
       self.audienceScreen = new Screen(self.projector, false, false);
       self.presenterScreen = new Screen(window, true, true);
+      self._watchDetach();
       onReady();
     });
 
@@ -50,5 +51,18 @@ class Stage {
       case "p":
         return this.onPrevious();
     }
+  }
+
+  _watchDetach() {
+    var self = this;
+    window.addEventListener("beforeunload", function() {
+      var messageBar = self.projector.document.getElementById("message");
+      messageBar.textContent = "Controller detached";
+    });
+
+    this.projector.addEventListener("beforeunload", function() {
+      var messageBar = document.getElementById("message");
+      messageBar.textContent = "Viewer detached";
+    });
   }
 }
