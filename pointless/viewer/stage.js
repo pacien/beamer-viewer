@@ -18,7 +18,7 @@ class Stage {
     var self = this;
     this.projector.addEventListener("load", function() {
       self.audienceScreen = new Screen(self.projector, false);
-      self.presenterScreen = new Screen(window, true);
+      self.presenterScreen = new Screen(window, false);
       onReady();
     });
 
