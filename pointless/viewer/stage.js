@@ -33,7 +33,7 @@ class Stage {
 
   _registerEventHandler(window) {
     var self = this;
-    window.addEventListener("keypress", function(event) {
+    window.addEventListener("keydown", function(event) {
       self._onCommand(event);
     })
   }
