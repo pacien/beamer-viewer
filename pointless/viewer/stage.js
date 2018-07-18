@@ -15,10 +15,13 @@ class Stage {
     this.audienceScreen = null;
     this.presenterScreen = null;
 
+    this._setMessage(window, "Please allow pop-ups on this page");
+
     var self = this;
     this.projector.addEventListener("load", function() {
       self.audienceScreen = new Screen(self.projector, false, false);
       self.presenterScreen = new Screen(window, true, true);
+      self._setMessage(window, null);
       self._watchDetach();
       onReady();
     });
@@ -56,13 +59,16 @@ class Stage {
   _watchDetach() {
     var self = this;
     window.addEventListener("beforeunload", function() {
-      var messageBar = self.projector.document.getElementById("message");
-      messageBar.textContent = "Controller detached";
+      self._setMessage(self.projector, "Controller detached");
     });
 
     this.projector.addEventListener("beforeunload", function() {
-      var messageBar = document.getElementById("message");
-      messageBar.textContent = "Viewer detached";
+      self._setMessage(window, "Viewer detached");
     });
+  }
+
+  _setMessage(window, message) {
+    var messageBar = window.document.getElementById("message");
+    messageBar.textContent = message;
   }
 }
