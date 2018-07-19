@@ -16,7 +16,27 @@
 
   <body>
     <canvas id="screen" class="centered"></canvas>
-    <input id="fileInput" class="centered" type="file" multiple="false"/>
+
+    <div id="welcomeScreen" class="centered">
+      <h1>Pointless Viewer</h1>
+      
+      <p>This viewer accepts double-width PDF presentations of the following shape:</p>
+      <table>
+        <tr>
+          <td>LEFT<br>(slides)</td>
+          <td>RIGHT<br>(notes)</td>
+        </tr>
+      </table>
+
+      <p>
+        (LaTeX-Beamer users may use
+        <code>\setbeameroption{show notes on second screen=right}</code>)
+      </p>
+
+      <p>Please select a PDF presentation file to open.</p>
+      <input id="fileInput" type="file" multiple="false"/>
+    </div>
+    
     <div id="timer" class="notification"></div>
     <div id="message" class="notification"></div>
 

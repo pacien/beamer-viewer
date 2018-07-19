@@ -13,8 +13,20 @@ html, body {
   height: 100%;
 }
 
-#fileInput {
+#welcomeScreen {
   display: none;
+}
+
+#welcomeScreen table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#welcomeScreen table td {
+  text-align: center;
+  border: 1px solid white;
+  width: 50%;
+  height: 8rem;
 }
 
 .centered {
