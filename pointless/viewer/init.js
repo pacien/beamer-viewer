@@ -20,9 +20,16 @@ function isController() {
   return window.opener == null || window.opener.location.href != window.location.href;
 }
 
+function initCache() {
+  if (!navigator.serviceWorker) return;
+  navigator.serviceWorker.register("appcache.js");
+}
+
 function init() {
+  initCache();
+
   var viewer = new Viewer();
-  
+
   if ("file" in params)
     viewer.load(params["file"]);
 }
