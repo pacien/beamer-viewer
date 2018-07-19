@@ -16,8 +16,41 @@ var params = function() {
   return queryDict;
 }();
 
-if (window.opener == null) {
-  pdfjsLib.getDocument(params["file"]).then(function(pdf) {
-    var presentation = new Presentation(pdf);
-  });
+function isController() {
+  return window.opener == null || window.opener.location.href != window.location.href;
 }
+
+class Viewer {
+  constructor() {
+    this.fileInput = document.getElementById("fileInput");
+    this.fileInput.style.display = "block";
+
+    var self = this;
+    fileInput.addEventListener("change", function(event) {
+      var callback = function(file) { self._load(file) };
+      self._readFile(event.target.files[0], callback);
+    });
+
+    if ("file" in params)
+      this._load(params["file"]);
+  }
+
+  _load(source) {
+    this.fileInput.style.display = "none";
+    pdfjsLib.getDocument(source).then(function(pdf) {
+      var presentation = new Presentation(pdf);
+    });
+  }
+
+  _readFile(file, callback) {
+    var fileReader = new FileReader();
+    fileReader.onload = function() {
+      var byteArray = new Uint8Array(this.result);
+      callback(byteArray);
+    }
+  
+    fileReader.readAsArrayBuffer(file);
+  }
+}
+
+if (isController()) new Viewer();
