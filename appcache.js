@@ -11,7 +11,7 @@ class AppCache {
   constructor() {
     this.cacheName = "cache";
     this.filesToCache = [
-      "viewer.html",
+      ".",
       "appcache.js",
 
       "pointless/pdfjs/pdf.js",
@@ -51,7 +51,7 @@ class AppCache {
     return caches.open(this.cacheName).then(function(cache) {
       return fetch(request).then(function(response) {
         cache.put(request, response.clone());
-        return response
+        return response;
       });
     });
   }
