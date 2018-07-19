@@ -7,50 +7,46 @@
 
 "use strict";
 
-var params = function() {
-  var queryDict = {};
-  location.search.substr(1).split("&").forEach(function(item) {
-    var pair = item.split("=");
-    queryDict[pair[0]] = pair[1];
-  });
-  return queryDict;
-}();
-
-function isController() {
-  return window.opener == null || window.opener.location.href != window.location.href;
-}
-
 class Viewer {
   constructor() {
     this.fileInput = document.getElementById("fileInput");
     this.fileInput.style.display = "block";
-
-    var self = this;
-    fileInput.addEventListener("change", function(event) {
-      var callback = function(file) { self._load(file) };
-      self._readFile(event.target.files[0], callback);
-    });
-
-    if ("file" in params)
-      this._load(params["file"]);
+    this._listenForInput();
   }
 
-  _load(source) {
+  load(source) {
     this.fileInput.style.display = "none";
     pdfjsLib.getDocument(source).then(function(pdf) {
       var presentation = new Presentation(pdf);
     });
   }
 
-  _readFile(file, callback) {
+  _readFile(file) {
     var fileReader = new FileReader();
+    var self = this;
     fileReader.onload = function() {
       var byteArray = new Uint8Array(this.result);
-      callback(byteArray);
+      self.load(byteArray);
     }
   
     fileReader.readAsArrayBuffer(file);
   }
-}
 
-if (isController()) new Viewer();
+  _listenForInput() {
+    var self = this;
+    fileInput.addEventListener("change", function(event) {
+      self._readFile(event.target.files[0]);
+    });
+
+    document.body.addEventListener("drop", function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      self._readFile(event.dataTransfer.files[0]);
+    });
+
+    document.body.addEventListener("dragover", function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    });
+  }
+}

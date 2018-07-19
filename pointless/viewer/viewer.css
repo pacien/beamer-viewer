@@ -5,11 +5,12 @@
  * License: GNU GPL v3
  */
 
-body {
+html, body {
   background-color: black;
   color: white;
   font-family: sans-serif;
   overflow: hidden;
+  height: 100%;
 }
 
 #fileInput {
