@@ -13,6 +13,7 @@ class AppCache {
     this.filesToCache = [
       ".",
       "appcache.js",
+      "favicon.ico",
 
       "pointless/pdfjs/pdf.js",
       "pointless/pdfjs/pdf.worker.js",
