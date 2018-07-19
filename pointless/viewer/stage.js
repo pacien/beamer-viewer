@@ -11,17 +11,17 @@ class Stage {
   constructor(onReady, onNext, onPrevious) {
     this.onNext = onNext;
     this.onPrevious = onPrevious;
-    this.projector = window.open(window.location.href);
     this.audienceScreen = null;
     this.presenterScreen = null;
 
-    this._setMessage(window, "Please allow pop-ups on this page");
+    this.projector = window.open(window.location.href);
+    if (this.projector == null)
+      alert("Please allow pop-ups, then refresh this page.");
 
     var self = this;
     this.projector.addEventListener("load", function() {
       self.audienceScreen = new Screen(self.projector, false, false);
       self.presenterScreen = new Screen(window, true, true);
-      self._setMessage(window, null);
       self._watchDetach();
       onReady();
     });
