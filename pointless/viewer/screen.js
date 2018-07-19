@@ -29,7 +29,7 @@ class Screen {
       this.timer.start();
 
     this.page = page;
-    this._refreshPage();
+    this._changePage();
     this.pageTurnCount++;
   }
 
@@ -67,6 +67,15 @@ class Screen {
     this.page.render(renderContext).then(function() {
       self._transferCanvas(workCanvas);
     });
+  }
+
+  _changePage() {
+    this.canvas.style.opacity = 0;
+    var self = this;
+    setTimeout(function() {
+      self._refreshPage();
+      self.canvas.style.opacity = 1;
+    }, 300);
   }
 
   _refreshPage() {
