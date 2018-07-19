@@ -18,25 +18,43 @@
     <canvas id="screen" class="centered"></canvas>
 
     <div id="welcomeScreen" class="centered">
-      <h1>Pointless Viewer</h1>
-      
-      <p>This viewer accepts double-width PDF presentations of the following shape:</p>
-      <table>
-        <tr>
-          <td>SLIDES</td>
-          <td>NOTES</td>
-        </tr>
-      </table>
+      <header>
+        <h1>Pointless Viewer</h1>
+        <span id="offlineCapable">(available offline)</span>
+      </header>
 
-      <p>
-        (L<sup>A</sup>T<sub>E</sub>X-Beamer users may use
-        <code>\setbeameroption{show notes on second screen=right}</code>)
-      </p>
+      <div>
+        <p>This viewer accepts double-width PDF presentations of the following shape:</p>
+        <table>
+          <tr>
+            <td>SLIDES</td>
+            <td>NOTES</td>
+          </tr>
+        </table>
 
-      <p>Please select a PDF presentation file to open.</p>
-      <input id="fileInput" type="file" multiple="false"/>
+        <p>
+          (L<sup>A</sup>T<sub>E</sub>X-Beamer users may use
+          <code>\setbeameroption{show notes on second screen=right}</code>)
+        </p>
+
+        <p>
+          Please select a PDF file to load.
+          Slides will be opened in a new window.
+        </p>
+
+        <input id="fileInput" type="file" multiple="false"/>
+      </div>
+
+      <div>
+        <ul>
+          <li><a href="https://pacien.org">&copy; 2018 Pacien</a></li>
+          <li><a href="https://github.com/pacien/pointless-viewer/issues">Bug tracker</a></li>
+          <li><a href="https://cgit.pacien.net/public/apps/pointless-viewer/">Source repository</a></li>
+          <li><a href="https://mozilla.github.io/pdf.js/">Powered by PDF.js</a></li>
+        </ul>
+      </div>
     </div>
-    
+
     <div id="timer" class="notification"></div>
     <div id="message" class="notification"></div>
 

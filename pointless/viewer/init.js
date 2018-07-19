@@ -23,6 +23,9 @@ function isController() {
 function initCache() {
   if (!navigator.serviceWorker) return;
   navigator.serviceWorker.register("appcache.js");
+  
+  var offlineCapableIndicator = document.getElementById("offlineCapable");
+  offlineCapableIndicator.style.visibility = "visible";
 }
 
 function init() {

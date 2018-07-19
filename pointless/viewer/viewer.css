@@ -13,8 +13,31 @@ html, body {
   height: 100%;
 }
 
+a {
+  color: white;
+}
+
+header > h1 {
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+
+}
+
+header span {
+  font-size: 1.25rem;
+}
+
+#offlineCapable {
+  visibility: hidden;
+}
+
 #welcomeScreen {
   display: none;
+}
+
+#welcomeScreen > div {
+  margin-bottom: 4rem;
 }
 
 #welcomeScreen table {
@@ -27,6 +50,24 @@ html, body {
   border: 1px solid white;
   width: 50%;
   height: 8rem;
+}
+
+#welcomeScreen ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#welcomeScreen li {
+  display: inline;
+}
+
+#welcomeScreen li + li::before {
+  content: " • ";
+}
+
+#fileInput {
+  width: 100%;
 }
 
 .centered {
