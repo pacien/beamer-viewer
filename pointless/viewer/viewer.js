@@ -20,6 +20,10 @@ class Viewer {
     this.welcomeScreen.style.display = "none";
     pdfjsLib.getDocument(source).then(function(pdf) {
       const presentation = new Presentation(pdf);
+    }).catch(function(error) {
+      console.error(error);
+      window.alert("Error while loading presentation:\n\n" + error.message);
+      window.location.href = window.location.pathname; // reload without "?file=..."
     });
   }
 
