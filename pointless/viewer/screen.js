@@ -13,6 +13,7 @@ class Screen {
     this.secondary = secondary;
 
     this.canvasId = "screen";
+    this.workCanvas = document.createElement("canvas");
     this.page = null;
 
     this.timer = withTimer ? new Timer(window) : null;
@@ -50,8 +51,8 @@ class Screen {
     return (viewport.width / 2) / viewport.height;
   }
 
-  _newCanvas(width, height, xOffset, yOffset) {
-    const canvas = document.createElement("canvas");
+  _getCanvas(width, height, xOffset, yOffset) {
+    const canvas = this.workCanvas;
     canvas.width = width;
     canvas.height = height;
 
@@ -61,11 +62,12 @@ class Screen {
     return { canvas: canvas, context: context };
   }
 
-  _showCanvas(canvas) {
+  _swapCanvas(canvas) {
     const oldCanvas = this.window.document.getElementById(this.canvasId);
     canvas.id = oldCanvas.id;
     canvas.classList = oldCanvas.classList;
     oldCanvas.replaceWith(canvas);
+    this.workCanvas = oldCanvas;
   }
 
   _render(canvas, context, scaleFactor) {
@@ -76,7 +78,7 @@ class Screen {
 
     const self = this;
     this.page.render(renderContext).then(function() {
-      self._showCanvas(canvas);
+      self._swapCanvas(canvas);
     });
   }
 
@@ -87,7 +89,7 @@ class Screen {
     const { width, height } = this._getScreenSize(screenRatio);
     const scaleFactor = height / this.page.getViewport(1).height;
     const xOffset = this.secondary ? -width : 0;
-    const { canvas, context } = this._newCanvas(width, height, xOffset, 0);
+    const { canvas, context } = this._getCanvas(width, height, xOffset, 0);
     this._render(canvas, context, scaleFactor);
   }
 }
