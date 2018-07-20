@@ -7,6 +7,7 @@
 
 "use strict";
 
+// script put at the root of the app so it can intercept all requests made from the current directory.
 class AppCache {
   constructor() {
     this.cacheName = "cache";
