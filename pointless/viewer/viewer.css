@@ -98,7 +98,3 @@ header span {
 .notification:empty {
   display: none;
 }
-
-#screen {
-  transition: opacity 300ms;
-}

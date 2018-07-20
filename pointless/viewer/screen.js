@@ -11,79 +11,83 @@ class Screen {
   constructor(window, secondary=false, withTimer=false) {
     this.window = window;
     this.secondary = secondary;
-    this.canvas = window.document.getElementById("screen");
-    this.context = this.canvas.getContext("2d");
-    this.page = null;
 
-    var self = this;
-    this.window.addEventListener("resize", function() {
-      self._refreshPage();
-    });
+    this.canvasId = "screen";
+    this.page = null;
 
     this.timer = withTimer ? new Timer(window) : null;
     this.pageTurnCount = 0;
+
+    this._registerListeners();
   }
 
   setPage(page) {
-    if (this.pageTurnCount === 1 && this.timer != null)
+    if (this.pageTurnCount++ === 1 && this.timer != null)
       this.timer.start();
 
     this.page = page;
-    this._changePage();
-    this.pageTurnCount++;
+    this._repaint();
   }
 
-  _resizeScreen(ratio) {
-    var windowRatio = this.window.innerWidth / this.window.innerHeight;
-    var scaleFactor = ratio / windowRatio;
-    this.canvas.width = this.window.innerWidth * Math.min(scaleFactor, 1);
-    this.canvas.height = this.window.innerHeight / Math.max(scaleFactor, 1);
-  }
-
-  _setOffset() {
-    var xOffset = this.secondary ? -this.canvas.width : 0;
-    this.context.transform(1, 0, 0, 1, xOffset, 0);
-  }
-
-  _makeWorkCanvas(width, height) {
-    var canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    return canvas;
-  }
-
-  _transferCanvas(source) {
-    this.context.drawImage(source, 0, 0);
-  }
-
-  _paintPage() {
-    var renderRatio = this.canvas.height / this.page.getViewport(1).height;
-    var renderViewport = this.page.getViewport(renderRatio);
-    var workCanvas = this._makeWorkCanvas(renderViewport.width, renderViewport.height);
-    var workContext = workCanvas.getContext("2d");
-    var renderContext = { canvasContext: workContext, viewport: renderViewport };
-
-    var self = this;
-    this.page.render(renderContext).then(function() {
-      self._transferCanvas(workCanvas);
+  _registerListeners() {
+    const self = this;
+    this.window.addEventListener("resize", function() {
+      self._repaint();
     });
   }
 
-  _changePage() {
-    this.canvas.style.opacity = 0;
-    var self = this;
-    setTimeout(function() {
-      self._refreshPage();
-      self.canvas.style.opacity = 1;
-    }, 300);
+  _getScreenSize(ratio) {
+    const windowRatio = this.window.innerWidth / this.window.innerHeight;
+    const horizontalScaleFactor = ratio / windowRatio;
+    return {
+      width: this.window.innerWidth * Math.min(horizontalScaleFactor, 1),
+      height: this.window.innerHeight / Math.max(horizontalScaleFactor, 1)
+    };
   }
 
-  _refreshPage() {
+  _getSlideSizeRatio() {
+    const viewport = this.page.getViewport(1);
+    return (viewport.width / 2) / viewport.height;
+  }
+
+  _newCanvas(width, height, xOffset, yOffset) {
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+
+    const context = canvas.getContext("2d");
+    context.transform(1, 0, 0, 1, xOffset, yOffset);
+
+    return { canvas: canvas, context: context };
+  }
+
+  _showCanvas(canvas) {
+    const oldCanvas = this.window.document.getElementById(this.canvasId);
+    canvas.id = oldCanvas.id;
+    canvas.classList = oldCanvas.classList;
+    oldCanvas.replaceWith(canvas);
+  }
+
+  _render(canvas, context, scaleFactor) {
+    const renderContext = {
+      canvasContext: context,
+      viewport: this.page.getViewport(scaleFactor)
+    };
+
+    const self = this;
+    this.page.render(renderContext).then(function() {
+      self._showCanvas(canvas);
+    });
+  }
+
+  _repaint() {
     if (this.page == null) return;
-    var viewport = this.page.getViewport(1);
-    var ratio = (viewport.width / 2) / viewport.height;
-    this._resizeScreen(ratio);
-    this._setOffset();
-    this._paintPage();
+
+    const screenRatio = this._getSlideSizeRatio();
+    const { width, height } = this._getScreenSize(screenRatio);
+    const scaleFactor = height / this.page.getViewport(1).height;
+    const xOffset = this.secondary ? -width : 0;
+    const { canvas, context } = this._newCanvas(width, height, xOffset, 0);
+    this._render(canvas, context, scaleFactor);
   }
 }
