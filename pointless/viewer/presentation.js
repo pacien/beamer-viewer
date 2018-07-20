@@ -15,10 +15,10 @@ class Presentation {
   }
 
   _setupStage() {
-    var self = this;
-    var onStageReadyCallback = function() { self._onStageReady(); };
-    var onNextCallback = function() { self._onNext(); };
-    var onPreviousCallback = function() { self._onPrevious(); };
+    const self = this;
+    const onStageReadyCallback = function() { self._onStageReady(); };
+    const onNextCallback = function() { self._onNext(); };
+    const onPreviousCallback = function() { self._onPrevious(); };
     return new Stage(onStageReadyCallback, onNextCallback, onPreviousCallback);
   }
 
@@ -37,7 +37,7 @@ class Presentation {
   }
 
   _setPage(pageIndex) {
-    var self = this;
+    const self = this;
     this.currentPageIndex = pageIndex;
     this.pdf.getPage(this.currentPageIndex).then(function(page) {
       self.stage.setPage(page);

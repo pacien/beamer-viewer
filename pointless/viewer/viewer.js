@@ -19,15 +19,15 @@ class Viewer {
   load(source) {
     this.welcomeScreen.style.display = "none";
     pdfjsLib.getDocument(source).then(function(pdf) {
-      var presentation = new Presentation(pdf);
+      const presentation = new Presentation(pdf);
     });
   }
 
   _readFile(file) {
-    var fileReader = new FileReader();
-    var self = this;
+    const fileReader = new FileReader();
+    const self = this;
     fileReader.onload = function() {
-      var byteArray = new Uint8Array(this.result);
+      const byteArray = new Uint8Array(this.result);
       self.load(byteArray);
     }
   
@@ -35,7 +35,7 @@ class Viewer {
   }
 
   _listenForInput() {
-    var self = this;
+    const self = this;
     fileInput.addEventListener("change", function(event) {
       self._readFile(event.target.files[0]);
     });

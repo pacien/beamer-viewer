@@ -27,7 +27,7 @@ class AppCache {
       "pointless/viewer/timer.js"
     ];
 
-    var appCache = this;
+    const appCache = this;
     self.addEventListener("install", function(event) {
       event.waitUntil(appCache._onInstall());
     });
@@ -38,7 +38,7 @@ class AppCache {
   }
 
   _onInstall() {
-    var self = this;
+    const self = this;
     return caches.open(this.cacheName).then(function(cache) {
       return cache.addAll(self.filesToCache);
     });
@@ -58,4 +58,4 @@ class AppCache {
   }
 }
 
-var appCache = new AppCache();
+const appCache = new AppCache();

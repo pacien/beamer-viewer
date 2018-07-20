@@ -18,7 +18,7 @@ class Stage {
     if (this.projector == null)
       alert("Please allow pop-ups, then refresh this page.");
 
-    var self = this;
+    const self = this;
     this.projector.addEventListener("load", function() {
       self.audienceScreen = new Screen(self.projector, false, false);
       self.presenterScreen = new Screen(window, true, true);
@@ -36,7 +36,7 @@ class Stage {
   }
 
   _registerEventHandler(window) {
-    var self = this;
+    const self = this;
     window.addEventListener("keydown", function(event) {
       self._onCommand(event);
     })
@@ -57,7 +57,7 @@ class Stage {
   }
 
   _watchDetach() {
-    var self = this;
+    const self = this;
     window.addEventListener("beforeunload", function() {
       self._setMessage(self.projector, "Controller detached");
     });
@@ -68,7 +68,7 @@ class Stage {
   }
 
   _setMessage(window, message) {
-    var messageBar = window.document.getElementById("message");
+    const messageBar = window.document.getElementById("message");
     messageBar.textContent = message;
   }
 }

@@ -7,10 +7,10 @@
 
 "use strict";
 
-var params = function() {
-  var queryDict = {};
+const params = function() {
+  const queryDict = {};
   location.search.substr(1).split("&").forEach(function(item) {
-    var pair = item.split("=");
+    const pair = item.split("=");
     queryDict[pair[0]] = pair[1];
   });
   return queryDict;
@@ -24,14 +24,14 @@ function initCache() {
   if (!navigator.serviceWorker) return;
   navigator.serviceWorker.register("appcache.js");
   
-  var offlineCapableIndicator = document.getElementById("offlineCapable");
+  const offlineCapableIndicator = document.getElementById("offlineCapable");
   offlineCapableIndicator.style.visibility = "visible";
 }
 
 function init() {
   initCache();
 
-  var viewer = new Viewer();
+  const viewer = new Viewer();
 
   if ("file" in params)
     viewer.load(params["file"]);

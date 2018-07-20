@@ -18,19 +18,19 @@ class Timer {
     if (this.startTime != null) return;
     this.startTime = Date.now();
 
-    var self = this;
+    const self = this;
     setInterval(function() {
       self._runTimer();
     }, 1000);
   }
 
   _runTimer() {
-    var timeDelta = Math.floor((Date.now() - this.startTime) / 1000);
+    const timeDelta = Math.floor((Date.now() - this.startTime) / 1000);
     this._setDisplay(timeDelta);
   }
 
   _setDisplay(seconds) {
-    var dateObj = new Date(null);
+    const dateObj = new Date(null);
     dateObj.setSeconds(seconds);
     this.display.textContent = dateObj.toISOString().substr(11, 8);
   }
