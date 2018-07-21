@@ -12,6 +12,11 @@
     <meta charset="utf-8">
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="pointless/viewer/viewer.css">
+
+    <noscript>
+      <style type="text/css">#fileSelect { display: none; }</style>
+    </noscript>
+
     <title>Pointless Viewer</title>
   </head>
 
@@ -38,12 +43,18 @@
           <code>\setbeameroption{show notes on second screen=right}</code>)
         </p>
 
-        <p>
-          Please select a PDF file to load.
-          Slides will be opened in a new window.
+        <p class="warning">
+          <noscript>A web browser with JavaScript support is required to use this application.</noscript>
         </p>
 
-        <input id="fileInput" type="file" multiple="false"/>
+        <div id="fileSelect">
+          <p>
+            Please select a PDF file to load.
+            Slides will be opened in a new window.
+          </p>
+
+          <input id="fileInput" type="file" multiple="false"/>
+        </div>
       </div>
 
       <div>

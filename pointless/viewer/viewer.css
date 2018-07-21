@@ -31,7 +31,6 @@ header span {
 }
 
 #welcomeScreen {
-  display: none;
   max-height: 100%;
   min-width: 20rem;
   overflow: auto;
@@ -97,4 +96,9 @@ header span {
 
 .notification:empty {
   display: none;
+}
+
+.warning {
+  font-weight: bold;
+  color: orangered;
 }

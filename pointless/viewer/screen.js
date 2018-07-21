@@ -19,6 +19,7 @@ class Screen {
     this.pageTurnCount = 0;
 
     this._registerListeners();
+    this._hideWelcomeScreen();
   }
 
   setPage(page) {
@@ -34,6 +35,11 @@ class Screen {
     this.window.addEventListener("resize", function() {
       self._repaint();
     });
+  }
+
+  _hideWelcomeScreen() {
+    const welcomeScreen = this.window.document.getElementById("welcomeScreen");
+    welcomeScreen.style.display = "none";
   }
 
   _getScreenSize(ratio) {

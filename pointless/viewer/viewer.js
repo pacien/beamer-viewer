@@ -9,15 +9,11 @@
 
 class Viewer {
   constructor() {
-    this.welcomeScreen = document.getElementById("welcomeScreen");
     this.fileInput = document.getElementById("fileInput");
-
-    this.welcomeScreen.style.display = "block";
     this._listenForInput();
   }
 
   load(source) {
-    this.welcomeScreen.style.display = "none";
     pdfjsLib.getDocument(source).then(function(pdf) {
       const presentation = new Presentation(pdf);
     }).catch(function(error) {
