@@ -28,8 +28,19 @@ function initCache() {
   offlineCapableIndicator.style.visibility = "visible";
 }
 
+function checkPopupPermission() {
+  try {
+    const popup = window.open();
+    popup.close();
+  } catch(error) {
+    const warningMessage = document.getElementById("warning");
+    warningMessage.textContent = "A pop-up blocker is active. Make sure to allow pop-ups on this website.";
+  }
+}
+
 function init() {
   initCache();
+  checkPopupPermission();
 
   const viewer = new Viewer();
 
