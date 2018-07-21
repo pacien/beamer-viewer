@@ -13,6 +13,7 @@ class AppCache {
     this.cacheName = "cache";
     this.filesToCache = [
       ".",
+      "popup.html",
       "appcache.js",
       "favicon.ico",
 

@@ -29,10 +29,9 @@ function initCache() {
 }
 
 function checkPopupPermission() {
-  try {
-    const popup = window.open();
-    popup.close();
-  } catch(error) {
+  const popup = window.open("popup.html");
+
+  if (popup == null) {
     const warningMessage = document.getElementById("warning");
     warningMessage.textContent = "A pop-up blocker is active. Make sure to allow pop-ups on this website.";
   }
