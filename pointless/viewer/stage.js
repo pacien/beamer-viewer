@@ -14,7 +14,7 @@ class Stage {
     this.audienceScreen = null;
     this.presenterScreen = null;
 
-    this.projector = window.open(window.location.href);
+    this.projector = window.open(window.location.href, "_blank", "toolbar=0,location=0,menubar=0");
     if (this.projector == null)
       alert("Please allow pop-ups, then refresh this page.");
 
