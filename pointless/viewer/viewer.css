@@ -21,6 +21,7 @@ html, body {
   color: white;
   font-family: sans-serif;
   overflow: hidden;
+  touch-action: none;
   height: 100%;
 }
 

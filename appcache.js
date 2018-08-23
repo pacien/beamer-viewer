@@ -35,9 +35,10 @@ class AppCache {
       "pointless/viewer/init.js",
       "pointless/viewer/viewer.js",
       "pointless/viewer/presentation.js",
-      "pointless/viewer/stage.js",
-      "pointless/viewer/screen.js",
-      "pointless/viewer/timer.js"
+      "pointless/viewer/stage/stage.js",
+      "pointless/viewer/stage/actions.js",
+      "pointless/viewer/screen/screen.js",
+      "pointless/viewer/screen/timer.js"
     ];
 
     const appCache = this;

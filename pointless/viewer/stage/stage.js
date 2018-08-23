@@ -20,8 +20,6 @@
 
 class Stage {
   constructor(onReady, onNext, onPrevious) {
-    this.onNext = onNext;
-    this.onPrevious = onPrevious;
     this.audienceScreen = null;
     this.presenterScreen = null;
 
@@ -37,6 +35,12 @@ class Stage {
       onReady();
     });
 
+    this.eventHandlers = [
+      new KeyboardEventHandler(onNext, onPrevious),
+      new MouseClickEventHandler(onNext, onPrevious),
+      new TouchSwipeEventHandler(onNext, onPrevious)
+    ];
+
     this._registerEventHandler(window);
     this._registerEventHandler(this.projector);
   }
@@ -47,24 +51,11 @@ class Stage {
   }
 
   _registerEventHandler(window) {
-    const self = this;
-    window.addEventListener("keydown", function(event) {
-      self._onCommand(event);
-    })
-  }
+    if (window == null) return;
 
-  _onCommand(keyboardEvent) {
-    switch (keyboardEvent.key) {
-      case "Enter":
-      case " ":
-      case "ArrowRight":
-      case "n":
-        return this.onNext();
-
-      case "ArrowLeft":
-      case "p":
-        return this.onPrevious();
-    }
+    this.eventHandlers.forEach(function(eventHandler) {
+      eventHandler.register(window);
+    });
   }
 
   _watchDetach() {
