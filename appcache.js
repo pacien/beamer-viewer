@@ -27,6 +27,7 @@ class AppCache {
       "popup.html",
       "appcache.js",
       "favicon.ico",
+      "sample/demo.pdf",
 
       "pointless/pdfjs/pdf.js",
       "pointless/pdfjs/pdf.worker.js",
