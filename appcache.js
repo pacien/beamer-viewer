@@ -1,5 +1,5 @@
 /*
- * Pointless Viewer, a web-based Beamer presentation viewer
+ * Beamer Viewer, a web-based PDF presentation viewer
  * Copyright (C) 2018 Pacien TRAN-GIRARD
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -29,17 +29,17 @@ class AppCache {
       "favicon.ico",
       "sample/demo.pdf",
 
-      "pointless/pdfjs/pdf.js",
-      "pointless/pdfjs/pdf.worker.js",
+      "beamer/pdfjs/pdf.js",
+      "beamer/pdfjs/pdf.worker.js",
 
-      "pointless/viewer/viewer.css",
-      "pointless/viewer/init.js",
-      "pointless/viewer/viewer.js",
-      "pointless/viewer/presentation.js",
-      "pointless/viewer/stage/stage.js",
-      "pointless/viewer/stage/actions.js",
-      "pointless/viewer/screen/screen.js",
-      "pointless/viewer/screen/timer.js"
+      "beamer/viewer/viewer.css",
+      "beamer/viewer/init.js",
+      "beamer/viewer/viewer.js",
+      "beamer/viewer/presentation.js",
+      "beamer/viewer/stage/stage.js",
+      "beamer/viewer/stage/actions.js",
+      "beamer/viewer/screen/screen.js",
+      "beamer/viewer/screen/timer.js"
     ];
 
     self.addEventListener("install", event => event.waitUntil(this.onInstall()));

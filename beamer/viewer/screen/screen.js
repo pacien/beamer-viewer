@@ -1,5 +1,5 @@
 /*
- * Pointless Viewer, a web-based Beamer presentation viewer
+ * Beamer Viewer, a web-based PDF presentation viewer
  * Copyright (C) 2018 Pacien TRAN-GIRARD
  * 
  * This program is free software: you can redistribute it and/or modify

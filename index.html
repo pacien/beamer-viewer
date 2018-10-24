@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!--
- * Pointless Viewer, a web-based Beamer presentation viewer
+ * Beamer Viewer, a web-based PDF presentation viewer
  * Copyright (C) 2018 Pacien TRAN-GIRARD
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -22,13 +22,13 @@
   <head>
     <meta charset="utf-8">
     <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="pointless/viewer/viewer.css">
+    <link rel="stylesheet" type="text/css" href="beamer/viewer/viewer.css">
 
     <noscript>
       <style type="text/css">#fileSelect { display: none; }</style>
     </noscript>
 
-    <title>Pointless Viewer</title>
+    <title>Beamer Viewer</title>
   </head>
 
   <body>
@@ -36,7 +36,7 @@
 
     <div id="welcomeScreen" class="centered">
       <header>
-        <h1>Pointless Viewer</h1>
+        <h1>Beamer Viewer</h1>
         <span id="offlineCapable">(available offline)</span>
       </header>
 
@@ -71,8 +71,8 @@
       <div>
         <ul>
           <li><a href="https://pacien.org">&copy; 2018 Pacien</a></li>
-          <li><a href="https://github.com/pacien/pointless-viewer/issues">Bug tracker</a></li>
-          <li><a href="https://cgit.pacien.net/public/apps/pointless-viewer/">Source repository</a></li>
+          <li><a href="https://github.com/pacien/beamer-viewer/issues">Bug tracker</a></li>
+          <li><a href="https://cgit.pacien.net/public/apps/beamer-viewer/">Source repository</a></li>
           <li><a href="https://mozilla.github.io/pdf.js/">Powered by PDF.js</a></li>
           <li><a href="javascript:load('sample/demo.pdf')">Demo</a></li>
         </ul>
@@ -82,13 +82,13 @@
     <div id="timer" class="notification"></div>
     <div id="message" class="notification"></div>
 
-    <script type="text/javascript" src="pointless/pdfjs/pdf.js"></script>
-    <script type="text/javascript" src="pointless/viewer/screen/timer.js"></script>
-    <script type="text/javascript" src="pointless/viewer/screen/screen.js"></script>
-    <script type="text/javascript" src="pointless/viewer/stage/actions.js"></script>
-    <script type="text/javascript" src="pointless/viewer/stage/stage.js"></script>
-    <script type="text/javascript" src="pointless/viewer/presentation.js"></script>
-    <script type="text/javascript" src="pointless/viewer/viewer.js"></script>
-    <script type="text/javascript" src="pointless/viewer/init.js"></script>
+    <script type="text/javascript" src="beamer/pdfjs/pdf.js"></script>
+    <script type="text/javascript" src="beamer/viewer/screen/timer.js"></script>
+    <script type="text/javascript" src="beamer/viewer/screen/screen.js"></script>
+    <script type="text/javascript" src="beamer/viewer/stage/actions.js"></script>
+    <script type="text/javascript" src="beamer/viewer/stage/stage.js"></script>
+    <script type="text/javascript" src="beamer/viewer/presentation.js"></script>
+    <script type="text/javascript" src="beamer/viewer/viewer.js"></script>
+    <script type="text/javascript" src="beamer/viewer/init.js"></script>
   </body>
 </html>

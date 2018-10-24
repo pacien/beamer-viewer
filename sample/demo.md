@@ -1,5 +1,5 @@
 ---
-title: Pointless Viewer demonstration
+title: Beamer Viewer demonstration
 author: Pacien TRAN-GIRARD (CC BY-NC-SA)
 date: August 24, 2018
 
@@ -9,7 +9,7 @@ header-includes: |
   \setbeameroption{show notes on second screen}
 ---
 
-# What is Pointless Viewer?
+# What is Beamer Viewer?
 
 * A Beamer presentation viewer
 
@@ -27,7 +27,7 @@ header-includes: |
 :::
 
 
-# Pointless Viewer is web-based
+# Beamer Viewer is web-based
 
 * No installation is required
 
@@ -121,7 +121,7 @@ Here's how to do the same using Markdown and Pandoc.
 
 # {.standout}
 
-This was a demo of Pointless Viewer
+This was a demo of Beamer Viewer
 
 ::: notes
 * Please submit issues on the bug tracker if you encounter any!
