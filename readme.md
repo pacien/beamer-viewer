@@ -11,7 +11,7 @@ An instance of this web application is deployed at [pointlessviewer.pacien.org](
 
 A double-width presentation may be generated with _Beamer_ using `\setbeameroption{show notes on second screen=right}`.
 
-A demonstration is available [here](https://pointlessviewer.pacien.org/?file=sample/demo.pdf).
+A demonstration is available [here](https://pointlessviewer.pacien.org/#file=sample/demo.pdf).
 
 
 ## License

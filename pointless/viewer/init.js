@@ -20,7 +20,7 @@
 
 const params = function() {
   const queryDict = {};
-  location.search.substr(1).split("&").forEach(function(item) {
+  location.hash.substr(1).split("&").forEach(item => {
     const pair = item.split("=");
     queryDict[pair[0]] = pair[1];
   });
@@ -56,6 +56,11 @@ function init() {
 
   if ("file" in params)
     viewer.load(params["file"]);
+}
+
+function load(file) {
+  location.hash = "file=" + file;
+  location.reload();
 }
 
 if (isController())
