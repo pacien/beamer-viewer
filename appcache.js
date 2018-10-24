@@ -42,33 +42,31 @@ class AppCache {
       "pointless/viewer/screen/timer.js"
     ];
 
-    const appCache = this;
-    self.addEventListener("install", function(event) {
-      event.waitUntil(appCache._onInstall());
-    });
+    self.addEventListener("install", event => event.waitUntil(this.onInstall()));
+    self.addEventListener("fetch", event => event.respondWith(this.onFetch(event.request)));
+  }
 
-    self.addEventListener("fetch", function(event) {
-      event.respondWith(appCache._onFetch(event.request));
+  onInstall() {
+    return caches.open(this.cacheName)
+                 .then(cache => cache.addAll(this.filesToCache));
+  }
+
+  onFetch(request) {
+    return caches.open(this.cacheName)
+                 .then(cache => this._serve(cache, request));
+  }
+
+  _serve(cache, request) {
+    return cache.match(request).then(cachedResponse => {
+      const update = this._fetchUpdate(cache, request);
+      return cachedResponse || update;
     });
   }
 
-  _onInstall() {
-    const self = this;
-    return caches.open(this.cacheName).then(function(cache) {
-      return cache.addAll(self.filesToCache);
-    });
-  }
-
-  _onFetch(request) {
-    return navigator.onLine ? this._fetchUpdate(request) : caches.match(request);
-  }
-
-  _fetchUpdate(request) {
-    return caches.open(this.cacheName).then(function(cache) {
-      return fetch(request).then(function(response) {
-        cache.put(request, response.clone());
-        return response;
-      });
+  _fetchUpdate(cache, request) {
+    return fetch(request).then(networkResponse => {
+      cache.put(request, networkResponse.clone());
+      return networkResponse;
     });
   }
 }
