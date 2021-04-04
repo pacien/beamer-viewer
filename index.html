@@ -2,18 +2,18 @@
 
 <!--
  * Beamer Viewer, a web-based PDF presentation viewer
- * Copyright (C) 2018 Pacien TRAN-GIRARD
- * 
+ * Copyright (C) 2021 Pacien TRAN-GIRARD
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
@@ -70,7 +70,7 @@
 
       <div>
         <ul>
-          <li><a href="https://pacien.org">&copy; 2018 Pacien</a></li>
+          <li><a href="https://pacien.org">&copy; 2021 Pacien</a></li>
           <li><a href="https://github.com/pacien/beamer-viewer/issues">Bug tracker</a></li>
           <li><a href="https://cgit.pacien.net/public/apps/beamer-viewer/">Source repository</a></li>
           <li><a href="https://mozilla.github.io/pdf.js/">Powered by PDF.js</a></li>
@@ -79,7 +79,12 @@
       </div>
     </div>
 
-    <div id="timer" class="notification"></div>
+    <div id="timer" class="notification hidden">
+      <span id="timer-pause" class="timer-action" title="Pause/resume timer">⏱︎</span>
+      <span id="timer-value"></span>
+      <span id="timer-reset" class="timer-action" title="Reset timer">↺</span>
+    </div>
+
     <div id="message" class="notification"></div>
 
     <script type="text/javascript" src="beamer/pdfjs/pdf.js"></script>
