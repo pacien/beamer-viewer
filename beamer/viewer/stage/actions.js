@@ -38,10 +38,12 @@ class KeyboardEventHandler extends ActionEventHandler {
       case "Enter":
       case " ":
       case "ArrowRight":
+      case "ArrowDown":
       case "n":
         return this.onNext();
 
       case "ArrowLeft":
+      case "ArrowUp":
       case "p":
         return this.onPrevious();
     }
